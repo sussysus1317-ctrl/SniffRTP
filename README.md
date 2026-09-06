@@ -1,76 +1,172 @@
 # SniffRTP
 
-A lightweight, configurable Random Teleport plugin for Paper Minecraft servers.
+**SniffRTP** is a stupidly simple RTP system with a bunch of customizable stuff inside `config.yml`.
 
-SniffRTP provides a straightforward `/rtp` system with configurable countdowns, cooldowns, movement cancellation, permission-based administrative bypasses, and LuckPerms compatibility.
+It is **specifically designed for servers that do not need a bunch of dumb, disconnected plugins** just to handle basic random teleportation.
 
 ## Features
 
-* Random teleporting with `/rtp`
-* Configurable pre-teleport countdown
-* Title + subtitle countdown display
-* Movement detection during countdown
-* Cancelled RTP cooldown
-* Normal RTP cooldown
-* Separate administrative behavior
-* Bukkit/LuckPerms permission support
+* Simple `/rtp` random teleport
+* Configurable RTP radius
+* Configurable countdowns
+* Configurable cooldowns
+* Movement-cancelled RTPs
+* Separate failed-RTP cooldown
+* Admin countdown/cooldown bypass
+* LuckPerms and standard permission support
+* Minecraft title countdowns
 * Lightweight configuration
-* Supports time values such as `20s`
-* Bare numbers such as `20` are interpreted as seconds
+* Supports time formats such as `20` and `20s`
+* Designed to stay simple instead of turning RTP into an entire framework
+
+## Preview
+
+### Before RTP
+
+![Pre RTP](https://cdn.modrinth.com/data/cached_images/8360e9587ac18943fa53a66eb66300f57ebe0727.jpeg)
+
+### After RTP
+
+![After RTP](https://cdn.modrinth.com/data/cached_images/0a59c7f6c939bc7c63212987663b8df185255056.jpeg)
+
+## Commands
+
+### `/rtp`
+
+Starts a random teleport.
+
+```text
+/rtp
+```
+
+The player will be teleported to a randomly selected valid location after the configured countdown.
 
 ## Permissions
 
-| Permission  | Default  | Description                      |
-| ----------- | -------- | -------------------------------- |
-| `rtp.use`   | Everyone | Allows `/rtp`                    |
-| `rtp.admin` | OP       | Administrative/bypass permission |
-| `rtp.*`     | None     | Grants all SniffRTP permissions  |
+| Permission  | Description                       | Default   |
+| ----------- | --------------------------------- | --------- |
+| `rtp.use`   | Allows the player to use `/rtp`   | Everyone  |
+| `rtp.admin` | Gives administrative RTP behavior | Operators |
+| `rtp.*`     | Grants all SniffRTP permissions   | None      |
 
-Administrative checks may also recognize OP and wildcard permissions such as `*`.
+Players with any of the following receive administrative RTP behavior:
 
-## Example
+```text
+OP
+*
+rtp.*
+rtp.admin
+```
 
-When a normal player executes `/rtp`, SniffRTP can display:
+Administrative players can bypass the normal RTP countdown/cooldown behavior.
 
-**RTP**
+## Countdown
 
-*Stand still for 5 seconds*
+Normal players receive a configurable countdown before teleporting.
 
-If the player moves before the timer finishes, the RTP is cancelled and the configured failed cooldown is applied.
+By default, the title looks similar to:
 
-If the countdown completes successfully, the player is randomly teleported.
+```text
+RTP
+Stand still for 5 seconds
+```
+
+The countdown is displayed using Minecraft titles.
+
+If the player moves during the countdown, the RTP is cancelled and the configured failed-RTP cooldown is applied.
 
 ## Configuration
 
+SniffRTP is designed around a small and readable `config.yml`.
+
 Example:
 
-```yaml
+```yml
+# SniffRTP Attribution and Preservation License v1.1
+
 default-cooldown: 20s
 default-failed-cooldown: 5s
+rtp-radius: 1000
 ```
 
-Time suffixes may be used where supported.
+### Time Values
 
-For convenience:
+Time values may include `s`:
 
-```yaml
+```yml
+default-cooldown: 20s
+```
+
+Or just a number:
+
+```yml
 default-cooldown: 20
 ```
 
-is interpreted as:
+Both are interpreted as:
 
-```yaml
-default-cooldown: 20s
+```text
+20 seconds
 ```
+
+### RTP Radius
+
+The maximum RTP radius can also be changed in `config.yml`.
+
+```yml
+rtp-radius: 1000
+```
+
+The default maximum radius is:
+
+```text
+1000 blocks
+```
+
+## Permission Plugins
+
+SniffRTP works with normal Bukkit permission handling and permission plugins such as **LuckPerms**.
+
+Example:
+
+```text
+/lp user <player> permission set rtp.admin true
+```
+
+Or:
+
+```text
+/lp group <group> permission set rtp.use true
+```
+
+## Supported Server Software
+
+SniffRTP is intended to support server-side platforms/builds including:
+
+* Paper
+* Purpur
+* Spigot
+* Bukkit
+* Folia
+* Sponge
+* Fabric
+* NeoForge
+* Forge
+
+Support may depend on the specific SniffRTP build being used.
 
 ## License
 
-This project is distributed under the **SniffRTP Attribution and Preservation License v1.1**.
+SniffRTP is distributed under the:
 
-Modification and commercial use are permitted under the license, but the required attribution and preservation notices must remain intact.
+**SniffRTP Attribution and Preservation License v1.1**
 
-You may not redistribute SniffRTP or a modified version while falsely claiming the original work as your own.
+You may modify and use SniffRTP, including on commercial servers, as long as you follow the license requirements.
 
-Do not remove or intentionally alter the protected attribution/license notices included with the project.
+The original SniffRTP attribution must be preserved.
 
-**Original author:** deepslate / sniff / sussy — **imsoback**
+Do not remove or falsely claim ownership of the original project attribution.
+
+---
+
+**SniffRTP — by imsoback / deepslate / sniff / sussy**
