@@ -1,0 +1,229 @@
+# SniffRTP Attribution and Preservation License v1.1
+
+Copyright (c) 2026 (deepslate/sniff/sussy)**imsoback**
+
+All rights reserved except those expressly granted by this License.
+
+Permission is granted to use, modify, redistribute, host, bundle, publish, and commercially use SniffRTP and derivative works based on SniffRTP, subject to every condition below.
+
+Failure to comply with any condition of this License automatically terminates the permissions granted by this License.
+
+## 1. Original Authorship Must Be Preserved
+
+SniffRTP was originally created by:
+
+(deepslate/sniff/sussy)**imsoback**
+
+No person, company, organization, developer, distributor, fork maintainer, marketplace seller, server operator, or other party may claim, imply, advertise, represent, or suggest that they created the original SniffRTP project.
+
+You may identify yourself as the author of your own modifications only.
+
+You may not replace the original author's name with your own name.
+
+You may not describe a fork or modified copy as an entirely original project if it contains SniffRTP source code or substantial portions of SniffRTP.
+
+## 2. Mandatory Credit Line
+
+Every copy of SniffRTP, including modified versions and derivative works containing SniffRTP code, must preserve the following line exactly:
+
+# Licensed as (deepslate/sniff/sussy)**imsoback**'s SniffRTP
+
+This line:
+
+* must not be deleted;
+* must not be edited;
+* must not be shortened;
+* must not be renamed;
+* must not be commented out differently for the purpose of hiding it;
+* must not be encoded or obfuscated to make it difficult to read;
+* must not be moved into an inaccessible location solely to hide attribution;
+* must not be replaced with another person's credit;
+* must remain plainly readable by a normal user inspecting the configuration file.
+
+When `config.yml` exists, this line must appear in `config.yml`.
+
+Additional credits may be added, but they must not replace, obscure, contradict, or reduce the visibility of the original credit.
+
+## 3. License File Must Remain
+
+Every redistributed copy of SniffRTP or derivative work containing SniffRTP code must include an unmodified copy of this License.
+
+The `LICENSE` file may not be removed, renamed for the purpose of concealment, replaced with another license, or modified.
+
+Additional licenses covering separately written code may be included only if they do not conflict with this License.
+
+## 4. Same-License Requirement
+
+Any redistributed modified version, fork, port, derivative work, or project containing substantial SniffRTP code must continue to distribute the SniffRTP-derived portions under this License.
+
+You may not redistribute SniffRTP-derived code under terms that remove or weaken the attribution and preservation requirements contained in this License.
+
+You may not sublicense the original SniffRTP code under a license that permits removal of the required attribution.
+
+## 5. Modified Versions Must Be Clearly Identified
+
+If you modify SniffRTP and distribute the modified version, you must clearly state that the version has been modified.
+
+A modified version must not be represented as an official release created by the original author.
+
+Where reasonably practical, redistributed modified versions must contain a notice similar to:
+
+Modified version of SniffRTP.
+Original author: (deepslate/sniff/sussy)**imsoback**
+Modifications by: <modifier name>
+
+The modifier may identify their own contributions, but the original attribution must remain present.
+
+## 6. No False Ownership Claims
+
+You may not:
+
+* claim ownership of the original SniffRTP project;
+* claim that you wrote original SniffRTP code that you did not write;
+* remove original authorship information;
+* replace original authorship information with your own;
+* falsely register the original SniffRTP project as your own work;
+* falsely claim exclusive authorship over SniffRTP-derived code;
+* intentionally conceal that a redistributed project contains SniffRTP code;
+* market a substantially unchanged copy of SniffRTP as an independently created plugin.
+
+Forking, modifying, improving, translating, porting, optimizing, maintaining, or commercially distributing SniffRTP does not make the distributor the original author of SniffRTP.
+
+## 7. Renaming Does Not Remove Attribution Requirements
+
+You may rename a modified fork or derivative work.
+
+However, renaming SniffRTP does not remove any obligation under this License.
+
+A renamed project containing SniffRTP code must still:
+
+* credit the original SniffRTP author;
+* preserve this License;
+* preserve the required attribution line;
+* identify itself as derived from or based on SniffRTP where reasonably visible.
+
+Changing the project name does not permit you to claim original authorship.
+
+## 8. Source-Code Attribution
+
+Where SniffRTP source files contain copyright, author, attribution, or licensing notices, those notices must remain intact.
+
+You may not deliberately remove authorship headers, copyright notices, license notices, or attribution comments from original SniffRTP source files.
+
+You may add your own contributor notices below or alongside the existing notices.
+
+## 9. Binary and JAR Redistribution
+
+Redistributing SniffRTP only as a compiled JAR does not remove the attribution requirements.
+
+A redistributed JAR containing SniffRTP code must preserve the required licensing and attribution information included in the distributed package or plugin resources.
+
+A distributor may not intentionally strip attribution resources from a compiled copy in order to conceal the origin of SniffRTP.
+
+## 10. README and Public Distribution Pages
+
+When SniffRTP or a SniffRTP-derived version is publicly redistributed through a repository, plugin marketplace, download page, release page, or similar public distribution page, the distributor must provide reasonably visible attribution stating that the software is based on or derived from SniffRTP by:
+
+(deepslate/sniff/sussy)**imsoback**
+
+This requirement does not require the original author's name to be the largest or most prominent text on the page, but it must not be intentionally hidden.
+
+## 11. Commercial Use
+
+Commercial use is permitted.
+
+You may:
+
+* sell access to servers using SniffRTP;
+* include SniffRTP in paid server packages;
+* charge for installation or configuration;
+* commercially distribute modified versions;
+* use SniffRTP in commercial infrastructure.
+
+Commercial use does not grant ownership of the original SniffRTP project and does not remove any attribution requirement.
+
+A seller must not falsely advertise themselves as the original creator of SniffRTP.
+
+## 12. Forks and Derivative Projects
+
+Forks are permitted.
+
+Derivative projects are permitted.
+
+Substantial modifications are permitted.
+
+However, any fork or derivative project containing SniffRTP code must retain the attribution requirements of this License.
+
+A complete rewrite that contains no SniffRTP code and does not copy protectable SniffRTP material is not governed by this License merely because it implements similar functionality.
+
+## 13. No False Endorsement
+
+You may not state or imply that:
+
+* your fork is officially maintained by the original author;
+* your modifications were approved by the original author;
+* the original author endorses your product, server, company, or service;
+* your modified version is an official SniffRTP release;
+
+unless the original author has explicitly authorized such representation.
+
+## 14. Original Project Identity
+
+The name "SniffRTP" may be used when accurately referring to the original project or a fork derived from it.
+
+A distributor must not intentionally use the SniffRTP identity in a deceptive manner intended to make users believe an unofficial modified release came directly from the original author.
+
+## 15. Preservation of Attribution Mechanisms
+
+You may not intentionally modify SniffRTP for the primary purpose of defeating, bypassing, deleting, concealing, or automatically removing the attribution requirements imposed by this License.
+
+Code specifically designed to remove mandatory SniffRTP attribution from redistributed copies is not permitted under this License.
+
+## 16. Compliance Required for Redistribution
+
+If you redistribute SniffRTP or a derivative work, you are responsible for ensuring that your redistributed copy complies with this License.
+
+Receiving SniffRTP from another party without proper attribution does not grant permission to continue distributing a non-compliant copy.
+
+## 17. Termination
+
+Your rights under this License terminate automatically if you materially violate its conditions.
+
+After termination, you must stop distributing SniffRTP and SniffRTP-derived copies unless and until the violation has been corrected and the original author permits continued distribution where legally required.
+
+Rights of users who previously received compliant copies are not automatically terminated solely because a distributor later violates this License.
+
+## 18. No Transfer of Copyright
+
+This License grants permission to use the Software subject to its conditions.
+
+It does not transfer copyright ownership of the original SniffRTP code.
+
+Copyright in original SniffRTP code remains with its copyright holder.
+
+Contributors may retain copyright in their separately authored modifications, subject to the continuing license obligations applying to SniffRTP-derived portions.
+
+## 19. No Warranty
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NONINFRINGEMENT.
+
+IN NO EVENT SHALL THE ORIGINAL AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES, LOSS, LIABILITY, OR OTHER CONSEQUENCE ARISING FROM THE SOFTWARE OR ITS USE.
+
+## 20. Entire Permission Grant
+
+Any permission not expressly granted by this License is reserved.
+
+Use, modification, commercial use, and redistribution are permitted only while the requirements of this License are satisfied.
+
+---
+
+SniffRTP Attribution and Preservation License v1.1
+
+Original project: SniffRTP
+
+Original author:
+(deepslate/sniff/sussy)**imsoback**
+
+Required attribution line:
+
+# Licensed as (deepslate/sniff/sussy)**imsoback**'s SniffRTP
