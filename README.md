@@ -6,8 +6,6 @@ It is designed for servers that want a proper `/rtp` implementation without inst
 
 SniffRTP provides configurable countdowns, cooldowns, cancellation behavior, permissions, visual effects, sounds, world-border support, chunk preloading, and a custom optimized destination engine.
 
----
-
 ## Screenshots
 
 ### Before RTP
