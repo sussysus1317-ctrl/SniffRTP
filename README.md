@@ -1,194 +1,162 @@
 # SniffRTP
 
-**SniffRTP** is a lightweight and customizable random teleport system for Minecraft servers.
+A configurable random teleport plugin and server-side mod for **Minecraft 26.2**.
 
-It is designed for servers that want a proper `/rtp` implementation without installing a giant general-purpose teleport plugin.
+SniffRTP focuses on `/rtp`: finding suitable destinations, preparing chunks, handling countdowns and cooldowns, and displaying configurable feedback.
 
-SniffRTP provides configurable countdowns, cooldowns, cancellation behavior, permissions, visual effects, sounds, world-border support, chunk preloading, and a custom optimized destination engine.
+## Before RTP
 
-## Screenshots
+![Before RTP](https://cdn.modrinth.com/data/cached_images/8360e9587ac18943fa53a66eb66300f57ebe0727.jpeg)
 
-### Before RTP
+## After RTP
 
-![Pre RTP](https://cdn.modrinth.com/data/cached_images/8360e9587ac18943fa53a66eb66300f57ebe0727.jpeg)
+![After RTP with blindness](https://cdn.modrinth.com/data/cached_images/0a59c7f6c939bc7c63212987663b8df185255056.jpeg)
 
-### After RTP
-
-![After RTP](https://cdn.modrinth.com/data/cached_images/0a59c7f6c939bc7c63212987663b8df185255056.jpeg)
-
----
 ## Features
 
-* `/rtp` random teleport
-* Custom lightweight RTP location engine
-* SpreadPlayers-inspired random position selection
-* Does **not** simply execute vanilla `/spreadplayers`
-* Destination chunk preloading
-* Safe destination validation
-* Overworld-specific destination handling
-* Nether-specific destination handling
-* End-specific destination handling
-* World-border support
-* Configurable RTP radius
-* Configurable countdown
-* Configurable cooldown
-* Configurable failed/cancelled cooldown
-* Cancel teleport when the player moves
-* Admin countdown bypass
-* Admin cooldown bypass
-* LuckPerms support
-* Configurable permissions
-* Minecraft title countdowns
-* Actionbars
-* Bossbars
-* Sounds
-* Particles
-* Potion effects
-* Configurable messages
-* Live configuration reload
-* Time parsing such as `20` or `20s`
-* Lightweight design
+- Configurable minimum and maximum RTP radius
+- Live world-border checks
+- Dimension-specific Overworld, Nether, and End handling
+- Full-floor and two-air-block landing checks
+- Destination preparation before teleport
+- Adaptive separation from recent destinations
+- Countdown that holds at **1** until preparation finishes
+- Normal-player, admin, and failed-attempt cooldowns
+- Optional movement, damage, interaction, and combat cancellation
+- Admin countdown, cooldown, and cancellation bypass settings
+- Titles, actionbars, bossbars, sounds, particles, and potion effects
+- Configurable messages and bold RTP chat prefixes
+- Live config reload and deleted-config recovery
+- Commented, organized YAML configuration
 
----
+## Requirements and Installation
 
-## RTP Engine
+SniffRTP provides separate builds for:
 
-SniffRTP uses its own lightweight destination-selection system inspired by Minecraft's SpreadPlayers logic.
+| Platform | Installation folder |
+| --- | --- |
+| Bukkit / Spigot | `plugins/` |
+| Paper / Purpur / Folia | `plugins/` |
+| Fabric / Forge / NeoForge | `mods/` |
 
-Instead of forwarding the player through the vanilla `/spreadplayers` command, SniffRTP directly:
+Use **Minecraft 26.2**, **Java 25**, and exactly one matching SniffRTP JAR.
 
-1. Selects a random X/Z coordinate inside the configured RTP area.
-2. Respects configured minimum/maximum distances and world borders.
-3. Searches for an appropriate destination for the current dimension.
-4. Rejects unsuitable locations.
-5. Preloads the required destination chunks.
-6. Teleports the player after the configured countdown.
-7. Runs the configured messages, effects, sounds, particles, titles, actionbars, and/or bossbars.
+Fabric also requires a compatible Fabric API. The Folia build requires Folia **26.2**; a 26.1.2 server cannot load its declared API version.
 
-The Nether and End use their own destination rules rather than blindly applying Overworld assumptions.
-
----
+Stop the server before replacing a JAR. Existing configuration files are preserved.
 
 ## Commands
 
-### `/rtp`
+| Command | Description |
+| --- | --- |
+| `/rtp` | Start RTP in the current world |
+| `/rtp overworld` | Target the Overworld |
+| `/rtp nether` | Target the Nether |
+| `/rtp end` | Target the End |
+| `/rtp <world-name>` | Target a loaded world |
+| `/rtp <biome>` | Request a biome, when permitted |
+| `/rtp cancel` | Cancel a pending request |
+| `/rtp reload` | Reload configuration; requires administrative access |
 
-Starts a random teleport.
+After config deletion, the console offers:
 
-Example:
-
-```text
-/rtp
-```
-
----
+- `sniffrtp yes` — Restore the last valid configuration
+- `sniffrtp nah` — Restore bundled defaults
 
 ## Permissions
 
-| Permission  | Description                                   |
-| ----------- | --------------------------------------------- |
-| `rtp.use`   | Allows normal `/rtp` usage                    |
+| Permission | Purpose |
+| --- | --- |
+| `rtp.use` | Basic RTP access |
 | `rtp.admin` | Administrative access and configured bypasses |
-| `rtp.*`     | Full SniffRTP permissions                     |
+| `rtp.*` | Full RTP access |
+| `rtp.overworld` | Overworld access when disabled by default |
+| `rtp.nether` | Nether access when disabled by default |
+| `rtp.end` | End access when disabled by default |
+| `rtp.custom` | Custom-dimension access when disabled by default |
+| `rtp.biomes` | Biome targeting when disabled by default |
 
-`rtp.use` is intended to be available to regular players by default.
+Compatible permission managers, including LuckPerms, can manage these permissions. Explicitly disabled worlds remain excluded from RTP.
 
-SniffRTP works with permission managers such as **LuckPerms**.
+## Configuration
 
----
+Configuration locations:
 
-## Countdown
+- Plugins: `plugins/SniffRTP/config.yml`
+- Mods: `config/sniffrtp/config.yml`
 
-By default, normal players can be required to stand still before teleporting.
+Cooldowns appear near the top, followed by mid-RTP displays, cancellation, and effects. Inline comments explain each setting and identify retained legacy options.
 
 Example:
 
-```text
-RTP
-Stand still for 5 seconds
-```
-
-Moving during the countdown can cancel the teleport and apply the configured failed RTP cooldown.
-
-Administrators can be configured to bypass the countdown.
-
----
-
-## Cooldowns
-
-SniffRTP supports separate cooldown behavior for successful and cancelled RTP attempts.
-
-Example configuration values can use:
-
 ```yaml
-default-cooldown: 20s
-default-failed-cooldown: 5s
+cooldown:
+  default-cooldown: 20s # Wait after a successful normal-player RTP.
+  default-failed-cooldown: 5s # Wait after a failed search or teleport.
+  default-adm-cooldown: 0s # Admin cooldown when bypass is disabled.
+  adm-bypass-cooldown: true # Allow admins to bypass cooldowns.
+
+ui:
+  midrtp-stand-still-enabled: true # Enable the normal-player countdown.
+  midrtp-stand-still-time: 5s # Countdown duration.
+
+cancel:
+  midrtp-cancel-onmove: false # Enable to cancel RTP when the player moves.
 ```
 
-Or simply:
+Durations accept `ms`, `s`, `m`, and `h`. Bare numbers are interpreted as seconds.
 
-```yaml
-default-cooldown: 20
-```
+Existing root-level settings remain supported and take precedence over their grouped equivalents.
 
-Values without a suffix are treated as seconds.
+## Countdown Behavior
 
----
+Destination preparation starts during the countdown.
 
-## Customization
+If preparation finishes early, the player waits for the countdown. If it finishes late, the display holds at **1** without repeating the countdown sound. The arrival display appears after teleporting.
 
-SniffRTP can customize nearly every part of the teleport sequence.
+A zero-second countdown still waits for destination preparation, but does not show a zero-second countdown message.
 
-This includes:
+Movement cancellation is optional and must be enabled separately. Manual cancellation does not automatically apply the failed-search cooldown.
 
-* Chat messages
-* Titles
-* Subtitles
-* Actionbars
-* Bossbars
-* Sounds
-* Particles
-* Potion effects
-* Countdown duration
-* Cooldown duration
-* Failed cooldown
-* Movement cancellation
-* Teleport radius
-* World rules
-* Destination behavior
+## Destination Selection
 
-The plugin can therefore be configured as either a completely minimal RTP system or a more polished server-style teleport experience.
+Each request selects candidates inside the configured radius and world border.
 
----
+SniffRTP prepares a candidate chunk and checks for a full landing floor with two empty blocks above it. It can inspect up to 16 columns in that chunk before requesting another candidate.
 
-## Chunk Preloading
+Recent destinations are tracked per player and dimension. Separation relaxes when terrain or search time makes finding a destination difficult. Border, radius, biome, and landing checks remain required.
 
-SniffRTP loads the destination area before moving the player.
+Nether destinations stay below the configured roof limit. End destinations require suitable terrain.
 
-This helps avoid teleporting the player into a location whose chunks have not finished loading yet and reduces visible world-loading interruptions after RTP.
+## Chunk Preparation
 
-Destination loading is performed as part of the RTP process rather than after the player has already arrived.
+Paper, Purpur, and Folia use their asynchronous chunk APIs. Bukkit and Spigot use a Minecraft 26.2 native bridge, while the mod builds use native queued chunk preparation.
 
----
+Preparation is bounded and tracked so a cancelled request cannot immediately start overlapping generation for the same player.
 
-## Platform Support
+Chunk generation still consumes server resources. Performance depends on terrain, hardware, server load, and other installed software.
 
-SniffRTP is distributed as platform-specific builds for supported Minecraft server ecosystems.
+## Validation
 
-Always use the JAR intended for your server implementation.
+Earlier live tests completed 161 teleports across seven platform variants. Later config, countdown, chat, and logging changes passed 88 automated assertions and verification of all eight JARs.
 
----
+The logger update also passed a Paper startup test without the System.out/err warning.
 
-## License
+Full Folia RTP validation remains pending. Automated tests do not replace real-client checks or production multiplayer testing.
 
-SniffRTP uses the **SniffRTP Attribution and Preservation License v1.1**.
+## Building
 
-You may modify and use SniffRTP, including commercially, subject to the license requirements.
+1. Install JDK 25 and Python 3.12 or newer.
+2. Set `JAVA_HOME`.
+3. Run `bootstrap.ps1` to fetch the pinned build dependencies.
+4. Run `python build.py`.
 
-Required attribution and preservation notices must remain intact.
+Platform JARs and the combined archive are written to `dist/`.
 
-Do not redistribute SniffRTP or modified versions while falsely claiming the original project as your own work.
+## License and Attribution
 
----
+Created by **imsoback (deepslate/sniff/blacky/catty)**.
 
-**SniffRTP — (deepslate/sniff/sussy)imsoback**
+Distributed under the **SniffRTP Attribution and Preservation License v1.1**.
+
+Required attribution and preservation notices must remain intact. Consult the full license before redistributing modified builds.
