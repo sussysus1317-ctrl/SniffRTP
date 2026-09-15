@@ -1,4 +1,4 @@
-# ✧ SniffRTP ✧
+# ✧ SniffRTP ✧ (modrinth please let me publish le plugin 😭)
 
 Random teleport for Minecraft servers. Use `/rtp` to find a safe destination within the configured radius and world border.
 
