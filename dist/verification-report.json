@@ -1,0 +1,74 @@
+{
+  "bukkit": {
+    "same_entry_names": true,
+    "entry_count": 800,
+    "byte_mismatches": [],
+    "verified": true,
+    "input_sha256": "44a894573d8e55e8007ab74cfa980ea1f2eedb0aca30ccee761a8d998deae75a",
+    "reassembled_sha256": "cbe9c7a30aa31c1f62d11bc5d110189499712f4e49199be6c928f3c3dd079f55"
+  },
+  "fabric": {
+    "same_entry_names": true,
+    "entry_count": 798,
+    "byte_mismatches": [],
+    "verified": true,
+    "input_sha256": "d9d9a5ad162cf41555886d030a7297b9f21ce0a8d6119ffedf99e907bb6cbe78",
+    "reassembled_sha256": "abc43bc346d9d8c38ecd9ab03dbdcfd0e291019dff28fba4a762397835ab1ee3"
+  },
+  "folia": {
+    "same_entry_names": true,
+    "entry_count": 802,
+    "byte_mismatches": [],
+    "verified": true,
+    "input_sha256": "03d2e71ea9203d9c45d675705ec2ac77ed91031df5322165d52b973066ca7ca7",
+    "reassembled_sha256": "8ff54641130a8b02b7d807acce3e8752a58823f44c7bab66f76764f58d166d03"
+  },
+  "forge": {
+    "same_entry_names": true,
+    "entry_count": 799,
+    "byte_mismatches": [],
+    "verified": true,
+    "input_sha256": "2fc28de2e73f0611c361c75b7e844ea8e322dd7c4be8027d52d210dca7438b7f",
+    "reassembled_sha256": "9650f36a67f9af51684489e8c395af30532e021495e281c8a5b0280d95e42bb3"
+  },
+  "neoforge": {
+    "same_entry_names": true,
+    "entry_count": 798,
+    "byte_mismatches": [],
+    "verified": true,
+    "input_sha256": "fb54aed7ba5d7e687bd11d06b43c77313ca56655b68d9251086a62c38ac30d84",
+    "reassembled_sha256": "9eb66afbddea0259c13312067509e277241c487b99e437639c0eea7c9e464551"
+  },
+  "paper": {
+    "same_entry_names": true,
+    "entry_count": 802,
+    "byte_mismatches": [],
+    "verified": true,
+    "input_sha256": "c46aecc1f4c810f3242e894cd0dbe981152a7d593d31e554ad2667edc7f388d8",
+    "reassembled_sha256": "e0518208f34da894bdcb0ab01aeaf1120137cd8cd558a8bbc9ade8a5d57ab517"
+  },
+  "purpur": {
+    "same_entry_names": true,
+    "entry_count": 802,
+    "byte_mismatches": [],
+    "verified": true,
+    "input_sha256": "cba07c5653df3369dcfef704d3072a9ac85c081abf6567aa5297da1bd80b703b",
+    "reassembled_sha256": "c8ff65f62e52ac1bc38bfcfa11fc1f075a8868da9f259d511beedf9448e1202b"
+  },
+  "spigot": {
+    "same_entry_names": true,
+    "entry_count": 800,
+    "byte_mismatches": [],
+    "verified": true,
+    "input_sha256": "11749642f1679d33fe611610b6c5e1dd9af16b60370e93bbffc6f8267095416f",
+    "reassembled_sha256": "94da3f2ce3d3c0cb24f24e0e6225baea7b791a840e615b2412a6b0d326e78ac3"
+  },
+  "sponge": {
+    "same_entry_names": true,
+    "entry_count": 796,
+    "byte_mismatches": [],
+    "verified": true,
+    "input_sha256": "db9ff7bf1ebb1b28ffd29dbd859bb368655b30be82cb39dd9d8924277f982e0b",
+    "reassembled_sha256": "91b4d10f9425ffc373570a88f14b19edadd31e3d27291d40bbc19eddafb047b1"
+  }
+}
