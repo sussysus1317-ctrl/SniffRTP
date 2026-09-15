@@ -1,0 +1,230 @@
+# SniffRTP Attribution and Preservation License v1.1
+# imsoback (deepslate/sniff/blacky/catty) | sussysus1317-ctrl (imsoback)
+# Durations: 500ms, 5s, 2m, 1h. A number without a suffix means seconds.
+# Cooldowns are first; mid-RTP displays, cancellation and effects follow.
+# Text supports MiniMessage colors. Placeholders depend on the message.
+# Existing legacy root keys still work and take priority over grouped settings.
+# Settings marked Legacy are retained for compatibility; see their comments.
+
+general: # General plugin information.
+  config-revision: 8 # Default config revision; leave this unchanged.
+
+cooldown: # Wait times between RTP requests.
+  default-cooldown: 20s # Cooldown after a successful RTP for normal players.
+  default-failed-cooldown: 5s # Cooldown after a search or teleport fails.
+  default-adm-cooldown: 0s # Cooldown after a successful RTP for admins when bypass is off.
+  adm-bypass-cooldown: true # Let admins ignore an existing RTP cooldown.
+
+ui: # Mid-RTP countdown first, then arrival displays and event feedback.
+  midrtp-stand-still-enabled: true # Enable the normal-player countdown; movement cancellation is configured below.
+  midrtp-adm-stand-still-enabled: true # Enable the separate admin countdown.
+  midrtp-stand-still-time: 5s # Normal-player countdown; 0s waits only for a safe destination.
+  midrtp-adm-stand-still-time: 0s # Admin countdown; 0s waits only for a safe destination.
+  midrtp-title: true # Show countdown titles; also enables the arrival-title channel.
+  midrtp-actionbar: false # Show countdown actionbar; also enables the arrival-actionbar channel.
+  midrtp-bossbar: false # Show countdown bossbar; also enables the arrival-bossbar channel.
+  midrtp-title-customize: # Text shown in the countdown title and subtitle.
+    during-title: <blue>RTP</blue> # Large title text during preparation and countdown.
+    during-subtitle: <gray>Teleporting in <time> seconds</gray> # Subtitle; <time> counts down to 1, then holds until RTP completes.
+  midrtp-actionbar-customize: # Countdown text above the hotbar.
+    during: <blue>RTP</blue><white> in <time> seconds</white> # Countdown text; use <time> or <total_time> where appropriate.
+  midrtp-bossbar-customize: # Countdown text on the bossbar.
+    during: <gradient:blue:aqua>RTP</gradient><white> in <time> seconds</white> # Countdown text; use <time> or <total_time> where appropriate.
+  midrtp-bossbar-duringrtp-color: <blue><light_blue><blue> # Bossbar color; this value resolves to blue, not an animated gradient.
+  afterrtp-title: true # Show an arrival title when midrtp-title is also enabled.
+  afterrtp-actionbar: true # Show an arrival actionbar when midrtp-actionbar is also enabled.
+  afterrtp-bossbar: true # Show an arrival bossbar when midrtp-bossbar is also enabled.
+  afterrtp-title-duration: 5s # How long the arrival title stays visible.
+  afterrtp-actionbar-duration: 3s # How long the arrival actionbar stays visible.
+  afterrtp-bossbar-duration: 3s # How long the arrival bossbar stays visible.
+  afterrtp-title-customize: # Arrival title and subtitle; <coord> inserts the destination.
+    title: <blue><coord></blue> # Large arrival title; <coord> inserts the destination.
+    subtitle: <gray>You have RTP'ed</gray> # Smaller arrival subtitle.
+  afterrtp-actionbar-customize: # Arrival actionbar message.
+    message: <white>You've RTP'ed to <coord></white> # Display text; <coord> inserts the destination coordinates.
+  afterrtp-bossbar-customize: # Arrival bossbar message and color.
+    message: <white>You've RTP'ed to <coord></white> # Display text; <coord> inserts the destination coordinates.
+    color: <blue><light_blue><blue> # Bossbar color; red, pink, yellow, green, blue, purple or white.
+  event-feedback: # Separate messages and overlays for cancellations and admin bypasses.
+    enabled: true # Enable this feature group.
+    default-duration: 2s # Default lifetime of event titles, actionbars and bossbars.
+    admin-cooldown-bypass: # Feedback when an admin bypasses the cooldown.
+      chat: true # Send this event to player chat.
+      title: false # Show this event as a title.
+      actionbar: false # Show this event above the hotbar.
+      bossbar: false # Show this event on a bossbar.
+      text: Cooldown bypassed. # Event message for chat, actionbar and bossbar; <action> describes the trigger.
+      title-text: <green>RTP</green> # Large title text for this event.
+      subtitle: <green>Cooldown bypassed</green> # Smaller title text for this event.
+      bossbar-color: green # Color of this event bossbar.
+    admin-countdown-bypass: # Feedback when an admin has no countdown.
+      chat: true # Send this event to player chat.
+      title: false # Show this event as a title.
+      actionbar: false # Show this event above the hotbar.
+      bossbar: false # Show this event on a bossbar.
+      text: Countdown bypassed. # Event message for chat, actionbar and bossbar; <action> describes the trigger.
+      title-text: <green>RTP</green> # Large title text for this event.
+      subtitle: <green>Countdown bypassed</green> # Smaller title text for this event.
+      bossbar-color: green # Color of this event bossbar.
+    canceled-automatic: # Feedback when a configured action cancels RTP.
+      chat: true # Send this event to player chat.
+      title: false # Show this event as a title.
+      actionbar: false # Show this event above the hotbar.
+      bossbar: false # Show this event on a bossbar.
+      text: RTP canceled because you <action>. # Event message for chat, actionbar and bossbar; <action> describes the trigger.
+      title-text: <red>RTP Canceled</red> # Large title text for this event.
+      subtitle: <red>You <action></red> # Smaller title text for this event.
+      bossbar-color: red # Color of this event bossbar.
+    canceled-manual: # Feedback for /rtp cancel.
+      chat: true # Send this event to player chat.
+      title: false # Show this event as a title.
+      actionbar: false # Show this event above the hotbar.
+      bossbar: false # Show this event on a bossbar.
+      text: You canceled your RTP. # Event message for chat, actionbar and bossbar; <action> describes the trigger.
+      title-text: <red>RTP Canceled</red> # Large title text for this event.
+      subtitle: <red>Canceled by you</red> # Smaller title text for this event.
+      bossbar-color: red # Color of this event bossbar.
+    instant-rtp: # Feedback for an RTP with no countdown; preparation can still take time.
+      chat: false # Send this event to player chat.
+      title: false # Show this event as a title.
+      actionbar: false # Show this event above the hotbar.
+      bossbar: false # Show this event on a bossbar.
+      text: Instant RTP. # Event message for chat, actionbar and bossbar; <action> describes the trigger.
+      title-text: <green>RTP</green> # Large title text for this event.
+      subtitle: <green>Instant teleport</green> # Smaller title text for this event.
+      bossbar-color: green # Color of this event bossbar.
+    admin-cancel-bypass: # Feedback when an admin ignores a cancellation condition.
+      chat: false # Send this event to player chat.
+      title: false # Show this event as a title.
+      actionbar: false # Show this event above the hotbar.
+      bossbar: false # Show this event on a bossbar.
+      text: 'Cancel condition ignored: <action>.' # Event message for chat, actionbar and bossbar; <action> describes the trigger.
+      title-text: <green>RTP</green> # Large title text for this event.
+      subtitle: <green>Cancel bypassed</green> # Smaller title text for this event.
+      bossbar-color: green # Color of this event bossbar.
+
+cancel: # Mid-RTP cancellation conditions; applies before teleport commitment.
+  midrtp-cancel-onmove: false # Cancel when the player moves.
+  midrtp-cancel-ondamage: false # Cancel when the player takes damage.
+  midrtp-cancel-oninteract: false # Cancel on supported block or entity interactions.
+  midrtp-cancel-onpvp: false # Cancel when the player damages or is damaged by another player.
+  midrtp-cancel-ifhit: false # Cancel when the player hits an entity.
+  midrtp-adm-cancel-bypass: true # Let admins ignore automatic cancellation conditions.
+
+effects: # Effects and sounds during RTP, followed by arrival effects and particles.
+  effects-mid-rtp-enabled: false # Apply the listed effects when the RTP starts.
+  effects-mid-rtp: # Entries use effect:level[:duration]; omitted duration covers the countdown.
+  - resistance:5 # Resistance level 5; uses the countdown duration.
+  - blindness:2 # Blindness level 2; uses the countdown duration.
+  effects-after-rtp-enabled: true # Apply the listed effects after a successful teleport.
+  effects-after-rtp: # Entries use effect:level:duration; a bare duration is in seconds.
+  - resistance:5:10 # Resistance level 5; 10 seconds.
+  - blindness:2:3 # Blindness level 2; 3 seconds.
+  countdown-sfx-enabled: true # Play each countdown second once; stay silent while waiting at 1.
+  countdown-sfx: # Countdown sound settings.
+    default: # Sound used unless a matching countdown-second override exists.
+      sound: block.note_block.pling # Minecraft sound identifier.
+      volume: 1.0 # Sound volume; 1.0 is the normal level.
+      pitch: 1.0 # Sound pitch; 1.0 is the normal pitch.
+    overrides: {} # Optional second-specific sound maps, e.g. "1": {sound: block.note_block.bell}.
+  after-rtp-sfx-enabled: true # Play an arrival sound after successful RTP.
+  after-rtp-sfx: # Arrival sound settings.
+    sound: entity.enderman.teleport # Minecraft sound identifier.
+    volume: 1.0 # Sound volume; 1.0 is the normal level.
+    pitch: 1.0 # Sound pitch; 1.0 is the normal pitch.
+  after-rtp-particles-enabled: true # Show particles after successful RTP.
+  after-rtp-particles: # Arrival particle settings.
+    particle: PORTAL # Particle name supported by the selected server platform.
+    count: 60 # Number of particles; limited to 0-1000.
+    offset-x: 0.6 # Horizontal particle spread on the X axis.
+    offset-y: 0.9 # Vertical particle spread on the Y axis.
+    offset-z: 0.6 # Horizontal particle spread on the Z axis.
+    extra: 0.1 # Extra particle speed/data value used by the server particle API.
+
+rtp: # Allowed destinations and the search area.
+  rtp-overworld: true # Allow normal players to RTP in the Overworld without a dimension permission.
+  rtp-nether: true # Allow normal players to RTP in the Nether without a dimension permission.
+  rtp-end: true # Allow normal players to RTP in the End without a dimension permission.
+  rtp-custom: false # Allow normal players to RTP in custom worlds without a dimension permission.
+  rtp-biomes: false # Allow biome-targeted RTP without the rtp.biomes permission.
+  rtp-disabled-worlds: [] # World names where RTP is disabled, including for admins.
+  rtp-min-radius: 250 # Minimum horizontal distance from the search center, in blocks.
+  rtp-radius: 10000 # Maximum horizontal distance from the search center, in blocks.
+  rtp-center-mode: world-spawn # Search center; world-spawn, player, or fixed.
+  rtp-center-x: 0 # Center X coordinate when the center mode is fixed.
+  rtp-center-z: 0 # Center Z coordinate when the center mode is fixed.
+  rtp-respect-world-border: true # Legacy setting; the live world border is always enforced.
+
+search: # Destination selection and chunk preparation limits.
+  rtp-max-attempts: 10000 # Maximum random candidates for a normal search; capped at 10000.
+  rtp-biome-max-attempts: 10000 # Maximum random candidates for a biome search; capped at 10000.
+  rtp-prefer-generated-chunks: true # Legacy setting; no generated-chunk preference is currently applied.
+  rtp-generate-new-chunks: true # Allow new chunks; false uses resident chunks on Bukkit/Spigot and native mods.
+  rtp-urgent-chunk-loads: false # Request priority loading on Paper/Purpur/Folia; ignored by other platforms.
+  rtp-max-concurrent-chunk-loads: 4 # Maximum active candidate preparations across all players; 1-32.
+  candidates-per-batch: 100 # Maximum cheap random-coordinate checks per search tick; 1-100.
+  max-batches: 100 # Multiplied by candidates-per-batch to cap total candidate attempts; 1-100.
+  recent-history-size: 32 # Recent destinations remembered per player and dimension; 5-128.
+  operation-timeout: 60s # Maximum wait for one candidate preparation, not the whole search.
+
+safety: # Safe-floor rules; two empty blocks above the floor are always required.
+  rtp-avoid-blocks: # Additional forbidden floor materials; built-in hazards remain forbidden.
+  - LAVA # Never use lava as the landing floor.
+  - WATER # Never use water as the landing floor.
+  - FIRE # Never use fire as the landing floor.
+  - SOUL_FIRE # Never use soul fire as the landing floor.
+  - MAGMA_BLOCK # Never use magma block as the landing floor.
+  - CACTUS # Never use cactus as the landing floor.
+  - CAMPFIRE # Never use campfire as the landing floor.
+  - SOUL_CAMPFIRE # Never use soul campfire as the landing floor.
+  - POWDER_SNOW # Never use powder snow as the landing floor.
+  nether-max-floor-y: 120 # Highest allowed Nether floor Y; capped at 120 to stay below the roof.
+
+chat: # RTP chat messages and prefix styling.
+  rtp-message: true # Send the countdown-start and successful-arrival chat messages.
+  adm-bypass-message-enabled: true # Allow admin cooldown-bypass feedback when that event is enabled.
+  midrtp-message-customize: # Chat text for RTP progress and arrival.
+    during: Teleporting in <total_time> seconds # Sent once at RTP start; <total_time> is the full countdown.
+    canceled: <red>RTP canceled, you have <action></red> # Legacy message; cancellation feedback uses ui.event-feedback.
+    after: <white>You have RTP'ed to <coord></white> # Arrival chat text; <coord> inserts X Y Z.
+  chat-style: # Prefix, spacing and chat color settings.
+    error-color: red # Color for the whole error message, including its prefix.
+    separator: ' ' # Text between the normal [RTP] prefix and the message.
+    normal-prefix-bold: true # Make RTP inside the normal chat brackets bold.
+    normal-text-bold: false # Make the normal chat message body bold.
+    error-bold: false # Also bold the error brackets and message; RTP is always bold.
+    trim-message: true # Remove whitespace at the start and end of chat messages.
+    collapse-extra-spaces: false # Replace repeated spaces and tabs with one space.
+    preserve-line-breaks: true # Keep newline characters; false replaces them with spaces.
+    detect-red-formatting: true # Legacy setting; error styling is chosen by the message sender.
+    detect-error-keywords: true # Legacy setting; keyword-based error detection is not active.
+    error-keywords: error,failed,failure,could not,cannot,can't,no permission,not permitted,disabled,unknown,no safe,no loaded,not found,invalid,unavailable,timed out,canceled,cancelled # Legacy keyword list; currently unused for error detection.
+    remove-old-prefix-from-message: true # Strip leading old [RTP] or [SniffRTP] prefixes before adding one.
+    strip-existing-chat-colors: true # Remove colors from message text before applying the chat style.
+
+messages: # Command responses; keep placeholders such as <time>, <biome> and <target>.
+  no-permission: You do not have permission to use RTP. # Shown when the player lacks a required RTP permission.
+  cooldown: You can RTP again in <time>. # Shown during a cooldown; <time> is the remaining wait.
+  already-pending: You already have an RTP in progress. # Shown when the player already has an active RTP request.
+  canceled: 'RTP canceled: <reason>' # Legacy message; cancellation feedback uses ui.event-feedback.
+  manual-canceled: Your pending RTP was canceled. # Legacy message; /rtp cancel uses ui.event-feedback.canceled-manual.
+  no-safe-location: Could not find a safe RTP location. Try again. # Shown when a normal RTP fails to find or use a safe destination.
+  no-biome-location: Could not find a safe RTP location in biome <biome>. Try again. # Shown when a biome RTP fails; <biome> is the requested biome.
+  world-disabled: RTP is disabled in this world. # Shown when the destination world is in rtp-disabled-worlds.
+  unknown-target: 'Unknown world/dimension/biome: <target>' # Shown for an unrecognized world, dimension or biome.
+  no-target-world: No loaded RTP world matches <target>. # Shown when no loaded world matches the requested dimension.
+  reloaded: SniffRTP config reloaded. # Shown after a successful manual config reload.
+  searching: Finding a safe location... # Shown when the countdown ends while destination preparation is pending.
+  admin-cooldown-bypass: Cooldown bypassed. # Legacy message; bypass feedback uses ui.event-feedback.admin-cooldown-bypass.
+
+advanced: # Automatic config-file checks and legacy compatibility settings.
+  live-config-sync: # Background detection of config changes and deletion.
+    enabled: true # Enable this feature group.
+    high-tps: 15 # Legacy tuning value; the high-TPS threshold is fixed above 15.
+    high-interval-ticks: 20 # Legacy tuning value; checks above 15 TPS occur every 20 ticks.
+    medium-tps: 12 # Legacy tuning value; the medium-TPS threshold is fixed above 12.
+    medium-interval-ticks: 100 # Legacy tuning value; checks above 12 through 15 TPS occur every 100 ticks.
+    low-interval-ticks: 200 # Legacy tuning value; checks at 10 through 12 TPS occur every 200 ticks.
+    pause-below-tps: 10 # Legacy tuning value; automatic checks always pause below 10 TPS.
+    deletion-recovery: true # Legacy setting; deletion recovery remains active when config sync is enabled.
+  warn-mistakes: true # Legacy setting; invalid-config errors are always logged.

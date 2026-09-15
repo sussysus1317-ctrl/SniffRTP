@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="SniffRTP Attribution and Preservation License v1.1"
+
+[[mods]]
+modId="sniffrtp"
+version="0.0.1"
+displayName="SniffRTP"
+authors="imsoback"
+description='''Server-side random teleport for Minecraft 26.2.'''
+
+[[dependencies.sniffrtp]]
+modId="neoforge"
+type="required"
+versionRange="[26.2.0.1,)"
+ordering="NONE"
+side="SERVER"
+
+[[dependencies.sniffrtp]]
+modId="minecraft"
+type="required"
+versionRange="[26.2,26.3)"
+ordering="NONE"
+side="SERVER"
+
+[[mixins]]
+config="sniffrtp.mixins.json"

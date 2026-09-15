@@ -1,0 +1,1 @@
+{"required":true,"minVersion":"0.8.7","package":"dev.deepslate.sniffrtp.mod.mixin","compatibilityLevel":"JAVA_21","mixins":["MovementMixin"],"injectors":{"defaultRequire":1}}

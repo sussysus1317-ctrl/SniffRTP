@@ -1,0 +1,48 @@
+name: SniffRTP
+version: 0.0.1
+main: dev.deepslate.sniffrtp.SniffRTPPlugin
+api-version: '26.2'
+author: imsoback
+description: Lightweight, configurable random teleport plugin for Bukkit 26.2.
+
+commands:
+  sniffrtp:
+    description: SniffRTP config deletion recovery choice.
+    usage: sniffrtp <yes|nah>
+  rtp:
+    description: Randomly teleport to a safe location.
+    usage: /rtp [overworld|o|nether|n|end|e|custom|custom-dimension|biome|cancel|c|reload]
+
+permissions:
+  rtp.use:
+    description: Allows basic /rtp usage.
+    default: true
+  rtp.overworld:
+    description: Explicitly allows overworld RTP when config default access is disabled.
+    default: false
+  rtp.nether:
+    description: Explicitly allows Nether RTP when config default access is disabled.
+    default: false
+  rtp.end:
+    description: Explicitly allows End RTP when config default access is disabled.
+    default: false
+  rtp.custom:
+    description: Explicitly allows custom-world RTP when config default access is disabled.
+    default: false
+  rtp.biomes:
+    description: Explicitly allows /rtp <biome> when config default biome access is disabled.
+    default: false
+  rtp.admin:
+    description: SniffRTP administrative permission and admin RTP behavior.
+    default: op
+  rtp.*:
+    description: Grants every SniffRTP permission.
+    default: op
+    children:
+      rtp.use: true
+      rtp.overworld: true
+      rtp.nether: true
+      rtp.end: true
+      rtp.custom: true
+      rtp.biomes: true
+      rtp.admin: true
